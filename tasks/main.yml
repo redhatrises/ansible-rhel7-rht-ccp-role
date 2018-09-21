@@ -393,6 +393,11 @@
     - NIST-800-171-3.1.2
     - NIST-800-171-3.7.2
     - DISA-STIG-RHEL-07-020210
+-   name: XCCDF Value var_xserver_object_manager
+    set_fact:
+        var_xserver_object_manager: 'false'
+    tags:
+    - always
 -   name: Ensure libsemanage-python installed
     package:
         name: libsemanage-python

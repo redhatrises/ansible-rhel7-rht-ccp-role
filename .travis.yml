@@ -1,0 +1,23 @@
+sudo: required
+
+env:
+  - distribution: centos
+    version: 7
+    test_role: rhel7-role-rht-ccp
+
+services:
+  - docker
+
+language: python
+python: "2.7"
+
+before_install:
+  - sudo /etc/init.d/apparmor stop && sudo apt purge apparmor
+  - sudo apt -y install selinux checkpolicy libapol4 libauparse0 libqpol1 policycoreutils python-audit python-ipy python-selinux python-semanage python-sepolgen python-sepolicy python-setools selinux selinux-policy-ubuntu selinux-utils
+  
+
+install:
+  - pip install molecule docker
+
+script:
+  - molecule test --scenario-name docker

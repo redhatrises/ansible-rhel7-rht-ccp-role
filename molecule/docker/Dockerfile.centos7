@@ -17,7 +17,7 @@ RUN yum -y install openssh-server audit authconfig initscripts git sudo selinux-
 
 # Fix for Travis docker containers
 RUN ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -N '' -t ed25519
-RUN sed -i "s/disabled/enabled/g" -i /etc/selinux/config
+RUN sed -i "s/disabled/permissive/g" -i /etc/selinux/config
 
 VOLUME ["/sys/fs/cgroup", "/var/log/audit"]
 

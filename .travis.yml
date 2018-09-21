@@ -15,4 +15,4 @@ install:
   - pip install molecule docker
 
 script:
-  - molecule debug test --scenario-name docker
+  - molecule --debug test --scenario-name docker

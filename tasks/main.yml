@@ -393,6 +393,28 @@
     - NIST-800-171-3.1.2
     - NIST-800-171-3.7.2
     - DISA-STIG-RHEL-07-020210
+-   name: Ensure libsemanage-python installed
+    package:
+        name: libsemanage-python
+        state: latest
+-   name: Set SELinux boolean xserver_object_manager accordingly
+    seboolean:
+        name: xserver_object_manager
+        persistent: true
+        state: '{{ var_xserver_object_manager }}'
+    tags:
+    - sebool_xserver_object_manager
+    - medium_severity
+    - enable_strategy
+    - low_complexity
+    - low_disruption
+    - NIST-800-53-TBD
+    - DISA-STIG-RHEL-07-TBD
+-   name: XCCDF Value var_xserver_execmem
+    set_fact:
+        var_xserver_execmem: 'false'
+    tags:
+    - always
 -   lineinfile:
         dest: /etc/login.defs
         line: PASS_MIN_LEN        {{ var_accounts_password_minlen_login_defs }}

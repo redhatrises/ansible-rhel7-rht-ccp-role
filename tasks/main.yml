@@ -838,6 +838,7 @@
     path: /etc/default/grub
     regexp: audit=.
     replace: audit=1
+  check_mode: false
   when:
     - argcheck is defined
     - argcheck.rc == 0

@@ -816,7 +816,6 @@
   failed_when: false
   check_mode: false
   register: argcheck
-  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   tags:
     - grub2_audit_argument
     - medium_severity
@@ -866,7 +865,6 @@
   when:
     - argcheck is defined
     - argcheck.rc != 0
-    - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   tags:
     - grub2_audit_argument
     - medium_severity
@@ -885,7 +883,6 @@
     - CJIS-5.4.1.1
 - name: update bootloader menu
   command: /sbin/grubby --update-kernel=ALL --args="audit=1"
-  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   tags:
     - grub2_audit_argument
     - medium_severity
